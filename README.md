@@ -177,6 +177,11 @@ ORDER BY periodo;
 #### **Grafico consulta 1: Titulares por sexo**. 
 ![image](https://github.com/user-attachments/assets/4e095dfb-352a-4dc1-ae1f-ef14b2e74506)
 
+#### **Grafico consulta 2: Titulares por periodo de un municipio especifico**. 
+![image](https://github.com/user-attachments/assets/8da37d4e-4e34-412f-9101-201997524c44)
+![image](https://github.com/user-attachments/assets/b5503751-2864-4be8-83de-fe672e67aa92)
+
+
 ## **Estructura del Proyecto**
 
 ```
@@ -187,4 +192,8 @@ postgres-etl/
 ├── sql/                     # Consultas SQL predefinidas
 └── README.md                # Documentación del proyecto
 ```
+## **Presentacion**
+https://www.canva.com/design/DAGnp3mOIbI/8VGW9LW58kLHQm0tnrlalg/view?utm_content=DAGnp3mOIbI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h133a3982c5
+
+
 
