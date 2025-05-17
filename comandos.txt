@@ -1,0 +1,6 @@
+1. Levantar los servicios
+docker compose up -d 
+
+2. Una vez creada la BD y los scrips se hayan ejecutado correctamente, le mandamos al superset la BD 
+docker compose exec -it superset superset db upgrade
+
