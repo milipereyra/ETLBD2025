@@ -1,4 +1,4 @@
-# **ETL para la carga de *`datasets`* de DENGUE en Argentina**
+# **ETL para la carga de *`datasets`* de Potenciar Trabajo en Argentina**
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
@@ -8,9 +8,9 @@
 ## **Descarga de Datasets**
 
 Los datasets utilizados en este proyecto pueden descargarse desde el portal oficial de datos abiertos del gobierno de Argentina:  
-[https://datos.gob.ar/dataset](https://datos.gob.ar/dataset)
+[https://datos.gob.ar/dataset](https://datos.gob.ar/dataset/desarrollo-social-potenciar-trabajo)
 
-Este portal proporciona información pública en formatos reutilizables, incluyendo datos relacionados con casos de dengue en Argentina.
+Este portal proporciona información pública en formatos reutilizables, incluyendo datos relacionados a los titulares del Programa Nacional De Inclusion Socio-Productiva Y Desarrollo Local - Potenciar Trabajo en Argentina.
 
 ## **Resumen del Tutorial**
 
@@ -18,7 +18,7 @@ Este tutorial guía al usuario a través de los pasos necesarios para desplegar 
 
 1. Levantar los servicios con Docker.
 2. Configurar la conexión a la base de datos en Apache Superset.
-3. Ejecutar consultas SQL para analizar los datos de casos de dengue.
+3. Ejecutar consultas SQL para analizar los datos de casos de titulares por sexo, periodo y municipio.
 4. Crear gráficos y tableros interactivos para la visualización de datos.
 
 ## **Palabras Clave**
@@ -32,7 +32,7 @@ Este tutorial guía al usuario a través de los pasos necesarios para desplegar 
 
 ## **Mantenido Por**
 
-**PINDU**
+**GRUPO 9**
 
 ## **Descargo de Responsabilidad**
 
@@ -41,9 +41,10 @@ El código proporcionado se ofrece "tal cual", sin garantía de ningún tipo, ex
 
 ## **Descripción del Proyecto**
 
-Este proyecto implementa un proceso ETL (Extract, Transform, Load) para la carga y análisis de datos relacionados con casos de dengue en Argentina. Utiliza herramientas modernas como Docker, PostgreSQL, Apache Superset y pgAdmin para facilitar la gestión, análisis y visualización de datos.
+Este proyecto implementa un proceso ETL (Extract, Transform, Load) para la carga y análisis de datos relacionados con los titulares del Programa Nacional De Inclusion Socio-Productiva Y Desarrollo Local - Potenciar Trabajo en Argentina.
+. Utiliza herramientas modernas como Docker, PostgreSQL, Apache Superset y pgAdmin para facilitar la gestión, análisis y visualización de datos.
 
-El objetivo principal es proporcionar una solución escalable y reproducible para analizar datos de dengue por grupo etario, departamento y provincia, permitiendo la creación de tableros interactivos y gráficos personalizados.
+El objetivo principal es proporcionar una solución escalable y reproducible para analizar datos de titulares por sexo, determinado periodo y municipio, permitiendo la creación de tableros interactivos y gráficos personalizados.
 
 ## **Características Principales**
 
@@ -66,7 +67,7 @@ El archivo `docker-compose.yml` define los siguientes servicios:
 
 1. **Base de Datos (PostgreSQL):**
    - Imagen: `postgres:alpine`
-   - Puertos: `5432:5432`
+   - Puertos: `5439:5432`
    - Volúmenes:
      - `postgres-db:/var/lib/postgresql/data` (almacenamiento persistente de datos)
      - `./scripts:/docker-entrypoint-initdb.d` (scripts de inicialización)
@@ -143,29 +144,27 @@ Accede a Apache Superset y crea una conexión a la base de datos PostgreSQL en l
 
 ### **2. Consultas SQL**
 
-#### **Consulta 1: Casos por grupo etario, departamento y provincia**
-Esta consulta permite analizar los casos de dengue agrupados por grupo etario, departamento y provincia.
+#### **Consulta 1: Titulares por sexo**
+Esta consulta permite conocer la cantidad de titulares filtrados por sexo que son befeciarios del potenciar trabajo.
 
 ```sql
-SELECT provincia.nombre AS provincia, 
-       departamento.nombre AS departamento, 
-       grupo_etario, 
-       cantidad
-FROM dengue 
-INNER JOIN departamento ON dengue.departamento_id = departamento.id
-INNER JOIN provincia ON departamento.provincia_id = provincia.id;
+SELECT sexo, COUNT(*) AS cantidad
+FROM titular 
+WHERE sexo IN('M','F')
+GROUP BY sexo;
 ```
 
-#### **Consulta 2: Casos por grupo etario con más de 20,000 casos**
-Esta consulta filtra los grupos etarios con más de 20,000 casos y ordena los resultados de mayor a menor.
+#### **Consulta 2: Titulares por periodo de un municio especifico**
+Esta consulta filtra la cantidad de titulares de todos los periodos de un municipio especifico.
 
 ```sql
-SELECT d.grupo_etario AS "Grupo Etario", 
-       SUM(d.cantidad) AS "Cantidad de Casos"
-FROM dengue AS d
-GROUP BY grupo_etario
-HAVING SUM(d.cantidad) > 20000
-ORDER BY "Cantidad de Casos" DESC;
+SELECT periodo, 
+       municipio,
+       municipio_id,
+       titulares
+FROM periodo
+WHERE municipio = 'Villa Maria'
+ORDER BY periodo;
 ```
 
 ### **3. Creación de Gráficos y Tableros**
@@ -174,6 +173,9 @@ ORDER BY "Cantidad de Casos" DESC;
 2. Haz clic en el botón ***`CREATE CHART`*** para crear gráficos interactivos.
 3. Configura el tipo de gráfico y las dimensiones necesarias.
 4. Guarda el gráfico en un tablero con el botón ***`SAVE`***.
+
+#### **Grafico consulta 1: Titulares por sexo**. 
+![image](https://github.com/user-attachments/assets/4e095dfb-352a-4dc1-ae1f-ef14b2e74506)
 
 ## **Estructura del Proyecto**
 
