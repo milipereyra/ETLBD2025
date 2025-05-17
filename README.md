@@ -154,7 +154,7 @@ WHERE sexo IN('M','F')
 GROUP BY sexo;
 ```
 
-#### **Consulta 2: Titulares por periodo de un municio especifico**
+#### **Consulta 2: Titulares por periodo de un municipio especifico**
 Esta consulta filtra la cantidad de titulares de todos los periodos de un municipio especifico.
 
 ```sql
