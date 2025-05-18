@@ -214,12 +214,11 @@ ORDER BY periodo;
 ```
 postgres-etl/
 ├── docker-compose.yml       # Configuración de Docker Compose
-├── init.sh                  # Script de inicialización
-├── data/                    # Carpeta para almacenar datasets
-├── sql/                     # Consultas SQL predefinidas
+├── datos/                    # Carpeta para almacenar datasets
+├── scripts/                    # Carpeta para almacenar los scripts sql
 └── README.md                # Documentación del proyecto
 ```
-## **Presentacion**
+## **Presentacion utilizada**
 https://www.canva.com/design/DAGnp3mOIbI/8VGW9LW58kLHQm0tnrlalg/view?utm_content=DAGnp3mOIbI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h133a3982c5
 
 
