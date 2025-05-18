@@ -33,6 +33,12 @@ Este tutorial guía al usuario a través de los pasos necesarios para desplegar 
 ## **Mantenido Por**
 
 **GRUPO 9**
+- Maggi, Mateo David.
+- Pereyra Argüello, Milagros.
+- Petry, Victoria.
+- Roldán, Lautaro.
+- Urzagaste, Karen.
+- Zandrino, Felipe.
 
 ## **Descargo de Responsabilidad**
 
@@ -129,22 +135,22 @@ El archivo `docker-compose.yml` define los siguientes servicios:
    docker compose up -d
    . init.sh
    ```
-4- **Creación Usuario en superset y permisos***
-   Ejecuta el comando para crear un usuario administrador en superset:
+4. **Comandos previos para el acceso a los datos desde superset**
+   a. Ejecuta el comando para crear un usuario administrador en superset:
    ```sh
    docker compose exec -it superset superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin
    ```
-   Enviar los datos de la BD a superset:
+   b. Enviar los datos de la BD a superset:
    ```sh
    docker compose exec -it superset superset db upgrade
    ```
    
-   Luego agregar permisos como administrador:
+   c. Luego agregar permisos como administrador:
    ```sh
    docker compose exec -it superset superset init
    ```
 
-4. **Acceso a las herramientas:**
+5. **Acceso a las herramientas:**
    - **Apache Superset:** [http://localhost:8088/](http://localhost:8088/)  
      Credenciales predeterminadas: ***`admin/admin`***
    - **pgAdmin:** [http://localhost:5050/](http://localhost:5050/)  
