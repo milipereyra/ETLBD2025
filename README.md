@@ -160,8 +160,15 @@ El archivo `docker-compose.yml` define los siguientes servicios:
 
 ### **1. Configuración de la Base de Datos**
 
-Accede a Apache Superset y crea una conexión a la base de datos PostgreSQL en la sección ***`Settings`***. Asegúrate de que la conexión sea exitosa antes de proceder.
-
+Accede a Apache Superset y crea una conexión a la base de datos PostgreSQL en la sección ***`Settings`*** con los siguientes datos:
+```sh
+   Host: db
+   Puerto: 5432
+   Base de datos: potenciartrabajo
+   Usuario: postgres
+   Contraseña: postgres
+```
+Asegúrate de que la conexión sea exitosa antes de proceder.
 ### **2. Consultas SQL**
 
 #### **Consulta 1: Titulares por sexo**
