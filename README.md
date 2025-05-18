@@ -129,6 +129,20 @@ El archivo `docker-compose.yml` define los siguientes servicios:
    docker compose up -d
    . init.sh
    ```
+4- **Creación Usuario en superset y permisos***
+   Ejecuta el comando para crear un usuario administrador en superset:
+   ```sh
+   docker compose exec -it superset superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin
+   ```
+   Enviar los datos de la BD a superset:
+   ```sh
+   docker compose exec -it superset superset db upgrade
+   ```
+   
+   Luego agregar permisos como administrador:
+   ```sh
+   docker compose exec -it superset superset init
+   ```
 
 4. **Acceso a las herramientas:**
    - **Apache Superset:** [http://localhost:8088/](http://localhost:8088/)  
